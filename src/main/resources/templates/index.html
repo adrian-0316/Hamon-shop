@@ -9,23 +9,39 @@
         table { border-collapse: collapse; width: 100%; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background: #f2f2f2; }
+        form { margin-top: 20px; }
+        input { margin: 5px; padding: 5px; }
+        button { padding: 6px 12px; background: darkred; color: white; border: none; cursor: pointer; }
+        button:hover { background: firebrick; }
+        a { color: darkred; text-decoration: none; }
     </style>
 </head>
 <body>
 <h1>Добро пожаловать в магазин хамона 🐖</h1>
+
 <table>
     <tr>
         <th>ID</th>
         <th>Название</th>
         <th>Цена (€)</th>
         <th>Описание</th>
+        <th>Действия</th>
     </tr>
     <tr th:each="product : ${products}">
         <td th:text="${product.id}"></td>
         <td th:text="${product.name}"></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.description}"></td>
+        <td><a th:href="@{/delete/{id}(id=${product.id})}">Удалить</a></td>
     </tr>
 </table>
+
+<h2>Добавить новый хамон</h2>
+<form th:action="@{/add}" th:object="${newProduct}" method="post">
+    <input type="text" th:field="*{name}" placeholder="Название" required>
+    <input type="number" th:field="*{price}" placeholder="Цена" required step="0.01">
+    <input type="text" th:field="*{description}" placeholder="Описание">
+    <button type="submit">Добавить</button>
+</form>
 </body>
 </html>
