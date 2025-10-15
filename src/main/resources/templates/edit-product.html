@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование</title>
+</head>
+<body>
+<h1>Редактировать продукт</h1>
+
+<form th:action="@{/edit/{id}(id=${product.id})}" th:object="${product}" method="post">
+    <input type="text" th:field="*{name}" placeholder="Название" required><br>
+    <input type="number" th:field="*{price}" placeholder="Цена" step="0.01" required><br>
+    <input type="text" th:field="*{description}" placeholder="Описание"><br>
+    <button type="submit">Сохранить</button>
+</form>
+
+<a href="/">⬅ Назад</a>
+</body>
+</html>
