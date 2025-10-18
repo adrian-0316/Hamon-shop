@@ -32,7 +32,11 @@
         <td th:text="${product.name}"></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.description}"></td>
-        <td><a th:href="@{/delete/{id}(id=${product.id})}">Удалить</a></td>
+        <td>
+            <a th:href="@{/product/{id}(id=${product.id})}">Подробнее</a> |
+            <a th:href="@{/edit/{id}(id=${product.id})}">Редактировать</a> |
+            <a th:href="@{/delete/{id}(id=${product.id})}">Удалить</a>
+        </td>
     </tr>
 </table>
 
